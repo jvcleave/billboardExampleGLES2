@@ -12,8 +12,6 @@ varying vec2 texCoordVarying;
 
 void main()
 {
-	vec4 pos = projectionMatrix * modelViewMatrix * position;
-	
 	colorVarying = color;
 	texCoordVarying = texcoord;
 	
