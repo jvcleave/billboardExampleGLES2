@@ -27,8 +27,8 @@ class testApp : public ofBaseApp {
 	    float billboardSizeTarget[NUM_BILLBOARDS];
 		
 		ofShader billboardShader;
-		ofImage texture;
-		
+		ofImage image;
+		ofTexture texture;
 		ofVboMesh billboards;
 		ofVec3f billboardVels[NUM_BILLBOARDS];
 };

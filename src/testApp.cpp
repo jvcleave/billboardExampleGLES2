@@ -1,5 +1,5 @@
 #include "testApp.h"
-ofTexture tex0;
+
 //--------------------------------------------------------------
 void testApp::setup() {
 	ofBackground(0, 0, 0);
@@ -38,11 +38,9 @@ void testApp::setup() {
 	
 	// we need to disable ARB textures in order to use normalized texcoords
 	ofDisableArbTex();
-	texture.loadImage("dot.png");
-	tex0 = texture.getTextureReference();
-	tex0.setTextureWrap(GL_REPEAT, GL_REPEAT);
-	
-	//ofEnableAlphaBlending();
+	image.loadImage("dot.png");
+	texture = image.getTextureReference();	
+	ofEnableAlphaBlending();
 }
 
 //--------------------------------------------------------------
@@ -77,7 +75,6 @@ void testApp::update() {
 
 //--------------------------------------------------------------
 void testApp::draw() {
-	//ofBackground(ofColor::yellow);
 	ofBackgroundGradient(ofColor(255), ofColor(230, 240, 255));
 	
 	string info = ofToString(ofGetFrameRate(), 2)+"\n";
@@ -94,15 +91,14 @@ void testApp::draw() {
 	
 	// bind the shader so that wee can change the
 	// size of the points via the vert shader
-		billboardShader.begin();
-		billboardShader.setUniformTexture("tex0", tex0, 1);
-		ofEnablePointSprites();
-		billboards.draw();
+	billboardShader.begin();
 	
-	//tex0.unbind();
+	ofEnablePointSprites();
+	texture.bind();
+	billboards.draw();
+	texture.unbind();
 	ofDisablePointSprites();
-	//ofNoFill();
-	ofRect(-ofGetWidth(), -ofGetHeight(), ofGetWidth(), ofGetHeight());
+	
 	billboardShader.end();
 	
 	ofPopMatrix();

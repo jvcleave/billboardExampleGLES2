@@ -17,5 +17,5 @@ void main(){
 	}else{
 		c = color;
 	}
-	gl_FragColor = texture2D(tex0, gl_PointCoord)*c;	
+	gl_FragColor = texture2D(src_tex_unit0, gl_PointCoord)*c;	
 }
